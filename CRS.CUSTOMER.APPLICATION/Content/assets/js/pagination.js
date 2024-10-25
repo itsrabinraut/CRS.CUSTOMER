@@ -79,6 +79,8 @@ function submitForm(page, prefecturesArea, typeValue, page_size) {
         form.action = `/search${prefecturesArea}/?${typeValue}`;
     } else if (typeValue.trim() === "scftab=03&NewHost=true") {
         form.action = `/search${prefecturesArea}/?${typeValue}`;
+    } else if (typeValue.trim() === "new") {
+        form.action = `/search${prefecturesArea}/?target=new&NewClub=true`;
     }
     else {
         form.action = `/search${prefecturesArea}/?TopSearch=${typeValue}`;

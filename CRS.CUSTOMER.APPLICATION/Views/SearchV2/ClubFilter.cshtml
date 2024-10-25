@@ -158,10 +158,10 @@
 
         </div>
     }
-<div class=" flex justify-start gap-[5px] py-2 px-4 text-[#292F33] font-semibold text-[12px]" style=" border-top:1px solid #EFEFEF">
-    <span>検索結果</span>
-    <span>@ViewBag.TotalRecords 件</span>
-</div>
+    <div class=" flex justify-start gap-[5px] py-2 px-4 text-[#292F33] font-semibold text-[12px]" style=" border-top:1px solid #EFEFEF">
+        <span>検索結果</span>
+        <span>@ViewBag.TotalRecords 件</span>
+    </div>
     <!-- club section  -->
     <div class="flex flex-col">
         @if (Model.FilteredClubModel.Count <= 0)
@@ -174,7 +174,7 @@
         }
         else
         {
-            <div class="list_wrap" >
+            <div class="list_wrap">
                 @foreach (var item in Model.FilteredClubModel)
                 {
                     if (item.ClubCategory.Trim().ToUpper() == "P")
@@ -686,8 +686,13 @@
         <script>
              let currentPage =  Math.floor((@ViewBag.StartIndex) / 25) + 1;
              const totalPages = @(ViewBag.TotalRecords != null ? Math.Ceiling(Convert.ToDouble(ViewBag.TotalRecords) / 25) : 0);
-             var prefecturesArea = "@ViewBag.PrefecturesArea";
-             var typeValue = "@target";
+            var prefecturesArea = "@ViewBag.PrefecturesArea";
+            var typeValue = null;
+            if ('@target' == 'new') {
+                typeValue = '@target';
+            } else {
+                typeValue = "@target"
+            }
              var page_size = 25;
             initializePagination(currentPage, totalPages, prefecturesArea, typeValue, page_size);
              scrollToTop();
