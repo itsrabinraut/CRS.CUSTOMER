@@ -80,7 +80,7 @@ function callPopupModal(clubName, clubLogo, landlineNumber, locationName, type) 
                                     <span>電話でのご予約はポイント</span>
                                     <span>対象外となりますのでご注意ください。</span>
                                 </div>
-                                <div class="" style="padding-bottom:28px"><a style="text-align:center;line-height:130%" class="text-[#D75A8B] text-[12px]  font-[600] flex justify-center" href="#">ネット予約でポイントを獲得する</a></div>
+                                <div class="" style="padding-bottom:28px"><a style="text-align:center;line-height:130%" class="text-[#D75A8B] text-[12px]  font-[600] flex justify-center " style="cursor:default"  >ネット予約でポイントを獲得する</a></div>
                             </div>
                         </div>
                     </div>
