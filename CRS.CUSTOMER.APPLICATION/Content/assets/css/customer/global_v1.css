@@ -2088,6 +2088,25 @@ img {
     overflow: hidden
 }
 
+
+.call-now-button {
+    border-radius: 4px;
+    border: 1px solid #D75A8B;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+    max-width: 84px;
+    align-items: center;
+    color: #D75A8B;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.56px;
+    line-height: 150%;
+    height: 40px;
+    cursor: pointer !important;
+}
+
 @media(width > 639px) {
     .responsiveReviewModalPopup {
         max-width: 375px;
