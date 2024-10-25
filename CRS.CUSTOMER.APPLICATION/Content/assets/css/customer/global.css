@@ -2109,6 +2109,7 @@ img {
     letter-spacing: 0.56px;
     line-height: 150%;
     height: 40px;
+    cursor:pointer !important;
 }
 
 @media(width > 639px) {

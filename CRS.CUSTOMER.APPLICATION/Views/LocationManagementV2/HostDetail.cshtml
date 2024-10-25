@@ -758,7 +758,7 @@
                 <div class="" style="max-width:100%; width:100%; min-width:100px"></div>
             }
         </div>
-        <a class="call-now-button whitespace-nowrap" onclick="callPopupModal('@Model.ClubNameJapanese', '@Model.ClubLogo', '@Model.LandLine', '@Model.ClubLocationName', '@Model.ClubCategory');">
+        <a class="call-now-button whitespace-nowrap" onclick="callPopupModal('@Model.ClubNameJapanese', '@Model.ClubLogo', '@Model.LandLine', '@Model.ClubLocationName', '@Model.ClubCategory','@Model.ClubId');">
             電話予約
         </a>
         @if (Model.ClubCategory.Trim().ToUpper() == "B")
