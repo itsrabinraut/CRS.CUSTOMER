@@ -332,8 +332,7 @@
                                 if (item.classList.contains('active')) {
                                     item.classList.remove('active');
                                 }
-                            });
-                            window.location.reload();
+                            });                           
                         }
                         else {
                             toastr.info(result.Message);
@@ -343,8 +342,9 @@
                         toastr.error("Something went wrong. Please try again later.");
                     }
                 });
+               // window.location.reload();
             });
-
+           // window.location.reload();
         }
         function handleNotificationClick(notificationId) {
             var notificationUrl = document.getElementById('notificationid-' + notificationId).value;
