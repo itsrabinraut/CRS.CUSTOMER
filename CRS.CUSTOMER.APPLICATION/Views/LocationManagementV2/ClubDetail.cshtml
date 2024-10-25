@@ -1885,7 +1885,7 @@ else if (Model.ClubCategory.Trim().ToUpper() == "B")
 
     </div>
 
-    <div onclick="callPopupModal('@Model.ClubNameJp', '@Model.ClubLogo', '@Model.LandLine', '@Model.Tag1', '@Model.ClubCategory');" class="call-now-button">
+    <div onclick="callPopupModal('@Model.ClubNameJp', '@Model.ClubLogo', '@Model.LandLine', '@Model.Tag1', '@Model.ClubCategory','@Model.ClubId');" class="call-now-button">
         電話予約
     </div>
     @if (Model.ClubCategory.Trim().ToUpper() == "B")

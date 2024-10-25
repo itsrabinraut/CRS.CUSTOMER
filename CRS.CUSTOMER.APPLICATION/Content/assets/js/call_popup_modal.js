@@ -1,5 +1,5 @@
 ﻿
-function callPopupModal(clubName, clubLogo, landlineNumber, locationName, type) {
+function callPopupModal(clubName, clubLogo, landlineNumber, locationName, type, clubId) {
     let html = '';
     if (type.trim().toUpperCase() === "B") {
         html = `<div id="call-now-popup-premium" 
@@ -80,7 +80,7 @@ function callPopupModal(clubName, clubLogo, landlineNumber, locationName, type) 
                                     <span>電話でのご予約はポイント</span>
                                     <span>対象外となりますのでご注意ください。</span>
                                 </div>
-                                <div class="" style="padding-bottom:28px"><a style="text-align:center;line-height:130%" class="text-[#D75A8B] text-[12px]  font-[600] flex justify-center " style="cursor:default"  >ネット予約でポイントを獲得する</a></div>
+                                <div class="" style="padding-bottom:28px"><a style="text-align:center;line-height:130%" class="text-[#D75A8B] text-[12px] underline font-[600] flex justify-center" onclick="bookNowPopup('${clubId}')">ネット予約でポイントを獲得する</a></div>
                             </div>
                         </div>
                     </div>
@@ -105,6 +105,12 @@ function closeCallNowPopup() {
         window.scrollTo(0, parseInt(scrollY || '0') * -1); // Restore scroll position 
         modal.remove();
     }
-    document.getElementById('club-bottom-tab-id').style.display = ''
+    document.getElementById('club-bottom-tab-id').style.display = 'none'
+}
+
+function bookNowPopup(clubId) {
+    InitiateClubReservationFunction(clubId)
+    closeCallNowPopup()
+    document.getElementById('club-bottom-tab-id').style.display = 'none'
 }
 
