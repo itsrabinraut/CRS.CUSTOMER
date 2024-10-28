@@ -105,7 +105,7 @@ function closeCallNowPopup() {
         window.scrollTo(0, parseInt(scrollY || '0') * -1); // Restore scroll position 
         modal.remove();
     }
-    document.getElementById('club-bottom-tab-id').style.display = 'none'
+    document.getElementById('club-bottom-tab-id').style.display = ''
 }
 
 function bookNowPopup(clubId) {
