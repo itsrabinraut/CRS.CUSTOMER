@@ -722,23 +722,20 @@
         <div>
             @if (!string.IsNullOrEmpty(Model.ClubTimePeriod))
             {
-                if (Model.ClubCategory.Trim().ToUpper() == "P")
-                {
-                    <div class="flex justify-center items-center gap-1 whitespace-nowrap text-sm text-secondary-1  font-medium leading-[100%] ">
-                        @if (!string.IsNullOrEmpty(Model.ClubTimePeriod) && Model.ClubTimePeriod.Trim().ToUpper() == "DAY")
-                        {
-                            <div class="text-sm text-secondary-1 flex justify-center items-center"><img src="~/Content/assets/images/customer/sun.svg" alt="夜" style="margin-right: 5px; margin-bottom: 2px"> @Model.ClubOpeningTime &#xff5e; @Model.ClubClosingTime</div>
-                        }
-                        else if (!string.IsNullOrEmpty(Model.ClubTimePeriod) && Model.ClubTimePeriod.Trim().ToUpper() == "NIGHT")
-                        {
-                            <div class="text-sm text-secondary-1 flex justify-center items-center">
-                                <img src="/Content/assets/images/customer/moon.svg" alt="夜" style="margin-right:5px; margin-bottom:2px">
-                                @Model.ClubOpeningTime &#xff5e; @Model.ClubClosingTime
+                <div class="flex justify-center items-center gap-1 whitespace-nowrap text-sm text-secondary-1  font-medium leading-[100%] ">
+                    @if (!string.IsNullOrEmpty(Model.ClubTimePeriod) && Model.ClubTimePeriod.Trim().ToUpper() == "DAY")
+                    {
+                        <div class="text-sm text-secondary-1 flex justify-center items-center"><img src="~/Content/assets/images/customer/sun.svg" alt="夜" style="margin-right: 5px; margin-bottom: 2px"> @Model.ClubOpeningTime &#xff5e; @Model.ClubClosingTime</div>
+                    }
+                    else if (!string.IsNullOrEmpty(Model.ClubTimePeriod) && Model.ClubTimePeriod.Trim().ToUpper() == "NIGHT")
+                    {
+                        <div class="text-sm text-secondary-1 flex justify-center items-center">
+                            <img src="/Content/assets/images/customer/moon.svg" alt="夜" style="margin-right:5px; margin-bottom:2px">
+                            @Model.ClubOpeningTime &#xff5e; @Model.ClubClosingTime
 
-                            </div>
-                        }
-                    </div>
-                }
+                        </div>
+                    }
+                </div>
             }
             @if (Model.ClubCategory.Trim().ToUpper() == "P")
             {
@@ -753,9 +750,26 @@
                     <div class="available disabled">本日空席あり</div>
                 }
             }
-            else if (Model.ClubCategory.Trim().ToUpper() == "B")
+            else if (Model.ClubCategory.Trim().ToUpper() == "B" && !string.IsNullOrEmpty(Model.ClubOpeningTime))
             {
-                <div class="" style="max-width:100%; width:100%; min-width:100px"></div>
+                if (!string.IsNullOrEmpty(Model.TodaysClubSchedule) && Model.TodaysClubSchedule.Trim().ToUpper() == "RESERVABLE")
+                {
+                    <div class=" rounded-sm text-white text-xs w-[100px] h-[18px] flex items-center justify-center gap-[1px] w-full" style="background: #d4b78a; display: flex; align-items: baseline;">
+                        営業中
+                    </div>
+                }
+                else if (Model.TodaysClubSchedule.Trim().ToUpper() == "UNRESERVABLE")
+                {
+                    <div class="available disabled">営業中</div>
+                }
+                else
+                {
+                    <div class="" style="max-width:100px; width:100%; min-width:100px"></div>
+                }
+            }
+            else
+            {
+                <div class="" style="max-width:100px; width:100%; min-width:100px"></div>
             }
         </div>
         <a class="call-now-button whitespace-nowrap" onclick="callPopupModal('@Model.ClubNameJapanese', '@Model.ClubLogo', '@Model.LandLine', '@Model.ClubLocationName', '@Model.ClubCategory','@Model.ClubId');">
