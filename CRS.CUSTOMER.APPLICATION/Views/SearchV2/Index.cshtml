@@ -143,22 +143,24 @@
 
 
             function ClubFilterSubmitButton() {
-
             EnableLoaderFunction();
             getSelectedCheckboxValues('search-by-store-category', 'club-category-id', 'club-category-class');// Call the function for the first set of checkboxes
             getSelectedCheckboxValues('search-by-plan', 'price-id', 'plan-price-class');// Call the function for the second set of checkboxes
             var locationDIV = document.getElementById("club-location-id");
-            let locationId = '';
-            if (locationDIV && locationDIV.classList.contains("active")) {
-                locationId = locationDIV.querySelector(".locationValue").getAttribute("data-info");
-            }
-            if (!locationId || locationId.trim() === '') {
-                locationId = '';
-            }
+                let locationId = '';
+                const activeLocationDiv = document.querySelector(".select-location-store.active");
+
+                if (activeLocationDiv) {
+                    locationId = activeLocationDiv.querySelector(".locationValue").getAttribute("data-info");
+                }
             $('#LocationId_1').val(locationId);
             $('#club-search').val($('#main-search-id').val());
-            var form = document.getElementById("club-filter-form-id");
-            form.action = "/search" + "@ViewBag.PrefecturesArea" + "/?target=club";
+                var form = document.getElementById("club-filter-form-id");
+                if (locationId != null) {
+                    form.action = "/search" + locationId + "/?target=club";
+                } else {
+                     form.action = "/search" + "@ViewBag.PrefecturesArea" + "/?target=club";
+                }
             form.submit();
             DisableLoaderFunction();
         }
