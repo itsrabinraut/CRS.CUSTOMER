@@ -16,6 +16,9 @@
         }
     }
 
+    .modal {
+        z-index: 10;
+    }
 
     @@media (min-width: 640px) {
         #innersec {
@@ -641,7 +644,7 @@
 
 
 <div id="modal1" class="modal responsiveModalfull" style="display:none">
-    <div class=" " style="width:90%">
+    <div class="modalContentWrapper " style="width:90%">
         <div class="relative w-full max-w-2xl max-h-full " style="z-index:1000">
             <span class=" absolute  z-30 text-[#fff] text-[28px] cursor-pointer right-3" onclick="closeModal('modal1')"
                   style="top:-49px">&times;</span>
@@ -1070,11 +1073,15 @@
         });
 
         $('#backbutton_id').click(function () {
+            debugger
             if (isEdit) {
                 openModal('confimation_modal')
             } else {
                 window.location.href = '/login'
             }
         });
+        function openDeleteAccountModal() {
+
+        }
     </script>
 }

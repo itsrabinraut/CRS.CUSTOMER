@@ -671,12 +671,12 @@
                 else if (!string.IsNullOrEmpty(ViewBag.ActionPageName) && ViewBag.ActionPageName == "ProfileNavMenu")
                 {
                     <div class="flex items-center border-t-[2px] border-t-[#C8B477] border-b-[1px] border-b-[#E0E0E0] sticky top-0 bg-white z-[10] relative px-4 py-[10px] h-[44px]" id="backbutton_id">
-                        <div class="flex gap-2 cursor-pointer items-center  absolute  left-4 text-sm">
+                        <div class="flex gap-2 cursor-pointer items-center  absolute  left-4">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  width="22" height="23" viewBox="0 0 22 23" fill="none">
                                 <path d="M15.2352 3.24084C14.786 2.79167 14.0618 2.79167 13.6127 3.24084L5.99518 10.8583C5.63768 11.2158 5.63768 11.7933 5.99518 12.1508L13.6127 19.7683C14.0618 20.2175 14.786 20.2175 15.2352 19.7683C15.6843 19.3192 15.6843 18.595 15.2352 18.1458L8.59851 11.5L15.2443 4.85417C15.6843 4.41417 15.6843 3.68084 15.2352 3.24084Z"
                                       fill="#BCB08A" />
-                            </svg> @CRS.CUSTOMER.APPLICATION.Resources.Resource.Back
+                            </svg> <span style="height:22px; font-size:14px; line-height:98%" class="flex items-center"> @CRS.CUSTOMER.APPLICATION.Resources.Resource.Back</span>
                         </div>
                         <div class="text-center w-full font-[700]" id="page-label-id">@ViewBag.PageTitle</div>
                     </div>
