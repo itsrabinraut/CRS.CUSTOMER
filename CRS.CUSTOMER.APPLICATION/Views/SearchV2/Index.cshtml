@@ -172,19 +172,28 @@
             getSelectedCheckboxValues('choose-blood-type', 'host-bloodtype-id', 'host-blood-type');// Call the function for the second set of checkboxes
             getSelectedCheckboxValues('hostConstellationGroup', 'host-constellationgroup-id', 'host-constellation-group-class');// Call the function for the second set of checkboxes
 
-            var locationDIV = document.getElementById("host-location-id");
+            //var locationDIV = document.getElementById("host-location-id");
             let locationId = '';
-            if (locationDIV && locationDIV.classList.contains("active")) {
-                locationId = locationDIV.querySelector(".locationValue").getAttribute("data-info");
+            const activeLocationDiv = document.querySelector(".select-location-store-host-section.active");
+            if (activeLocationDiv) {
+                locationId = activeLocationDiv.querySelector(".locationValue").getAttribute("data-info");
             }
-            if (!locationId || locationId.trim() === '') {
-                locationId = '';
-            }
+            //if (locationDIV && locationDIV.classList.contains("active")) {
+            //    locationId = locationDIV.querySelector(".locationValue").getAttribute("data-info");
+            //}
+            //if (!locationId || locationId.trim() === '') {
+            //    locationId = '';
+            //}
             $('#LocationId_2').val(locationId);
             $('#host-search').val($('#main-search-id').val());
             $('#host-occupation-id').val($('#host-occupation-ddl-id').val());
             var form = document.getElementById("host-filter-form-id");
-            form.action = "/search" + "@ViewBag.PrefecturesArea" + "/?target=host";
+            if (locationId.trim() == '') {
+                form.action = "/search" + "@ViewBag.PrefecturesArea" + "/?target=host";
+            } else {
+                form.action = "/search" + locationId + "/?target=host";
+            }
+
             form.submit();
             DisableLoaderFunction();
         }
