@@ -8,6 +8,7 @@
         overflow-y: scroll !important;
         /*  -webkit-overflow-scrolling: touch;*/
         -webkit-overflow-scrolling: touch;
+        height:100svh;
     }
 
     @@supports (-webkit-touch-callout: none) {
@@ -150,12 +151,24 @@
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
     }
+
+    .modalContentWrapper {
+        width: 375px !important;
+        /* left: 50% !important; */
+        transform: translate(-0%, -50%) !important;
+        top: 0% !important;
+        position: relative !important;
+        margin-top: 50% !important;
+        padding: 0 16px;
+        /* bottom: -40px; */
+    }
+
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/inobounce/0.1.6/inobounce.min.js"></script>
 
-<div class="no-scrollbar overflow-y-auto ios-scroll" style="height:100%;">
-
-    <div class="px-[12px] py-[20px] grid border-y  ">
+@*<div class=" overflow-y-auto ios-scroll" style="height:100%;">*@
+<div class="no-scrollbar" style="touch-action: auto; height: calc(100svh - 45px); overflow:scroll">
+    <div class="px-[12px] py-[20px] grid " style="border-bottom-width: 1px;">
         <div class="flex flex-row justify-between">
             <div class="flex flex-row">
                 <div class="photocontainer">
@@ -657,7 +670,7 @@
                     <div class=" text-[12px] font-normal text-[#1A1C1E]">ご以下の情報が全て失われます</div>
                 </div>
                 <!-- Modal body -->
-                <div style="border-radius: 4px; background: #EFEFEF;">
+                <div style="border-radius: 4px; background: #EFEFEF; width:90%; margin:20px auto 0 auto">
                     <ul style="color: #292F33; font-size: 11px; font-style: normal; font-weight: 400; line-height: 100%; list-style-type: circle;" class="delete-confirm">
                         <li>プロフィール情報</li>
                         <li>お支払い情報</li>
@@ -1073,7 +1086,6 @@
         });
 
         $('#backbutton_id').click(function () {
-            debugger
             if (isEdit) {
                 openModal('confimation_modal')
             } else {
