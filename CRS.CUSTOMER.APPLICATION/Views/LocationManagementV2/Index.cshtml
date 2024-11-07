@@ -137,10 +137,14 @@
 
     .locationSearch {
         background: #FCFCFC;
+        color: #A09E91;
+        display:flex;
+        align-items:center
     }
 
-        .locationSearch:focus {
+        .locationSearch:focus, .locationSearch:active {
             outline: none;
+           /* background:#;*/
         }
 </style>
 <!-- #region Search -->
@@ -152,12 +156,11 @@
                   fill="#BCB08A" />
         </svg>
     </span>
-    <input class="w-full ml-1 text-xs text-[#BCB08A] locationSearch "
-           title="Search"
-           type="text"
-           placeholder="@CRS.CUSTOMER.APPLICATION.Resources.Resource.Search_Filter_Placeholder" readonly />
+    <div class="w-full ml-1 text-xs text-[#BCB08A] locationSearch "
+         title="Search"
+>@CRS.CUSTOMER.APPLICATION.Resources.Resource.Search_Filter_Placeholder</div>
     <div class="group flex justify-end cursor-pointer p-3 rotate-90" title="Filter">
-        <a onclick="redirectToSearchPage()">
+        <a >
             <svg class="group-hover:bg-primaryLight w-4 h-4 text-[#BCB08A] " aria-hidden="true"
                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
