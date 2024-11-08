@@ -84,7 +84,7 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
         }
 
         [HttpGet, Route("policy")]
-        public ActionResult privacypolicy(string origin = "")
+        public ActionResult privacypolicy()
         {
             PopulateMetaTagInfo();
             ViewBag.IsVisibleNavIcon = "false";
@@ -92,7 +92,7 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
         }
 
         [HttpGet, Route("rule")]
-        public ActionResult termsAndCondition(string origin = "")
+        public ActionResult termsAndCondition()
         {
             PopulateMetaTagInfo();
             ViewBag.IsVisibleNavIcon = "false";

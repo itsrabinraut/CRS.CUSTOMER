@@ -7,7 +7,7 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
     {
         public ActionResult Index()
         {
-            var id = Session["ErrorId"].ToString();
+            var id = Session["ErrorId"]?.ToString();
             if (string.IsNullOrEmpty(id)) return RedirectToAction("LogOff", "Home");
             ViewBag.ErrorId = id;
             return View();
