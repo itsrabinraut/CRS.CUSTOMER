@@ -113,18 +113,7 @@
     <!--#endregion near-location.php-->
 </div>
 @*<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVqzKbK_YObo2ivCYETgRkFCdjCFs2aQA&callback=initMap"></script>*@
-<script>
-    function loadGoogleMapsScript() {
-        var script = document.createElement('script');
-        script.src = "/Home/GetGoogleMapData?libraries=geometry&callback=initMap";
-        script.async = true; // Ensures the script is loaded asynchronously
-        script.defer = true; // Defers execution until after the document has been parsed
-        document.head.appendChild(script); // Injects the script into the document
-    }
 
-    // Call the function to load Google Maps asynchronously
-    loadGoogleMapsScript();
-</script>
 
 <script>
     // Get all the div elements
@@ -369,3 +358,18 @@
         }
 </script>
 <!--#endregion map.php JS-->
+<script>
+    function loadGoogleMapsScript() {
+        var script = document.createElement('script');
+        //script.src = "/Home/GetGoogleMapData?libraries=geometry&callback=initMap";
+        //script.src = "/Home/GetGoogleMapData";
+        script.src = "/Home/GetGoogleMapData?libraries=geometry&callback=initMap";
+        script.async = true; // Ensures the script is loaded asynchronously
+        script.defer = true; // Defers execution until after the document has been parsed
+        document.head.appendChild(script); // Injects the script into the document
+        //initMap();
+    }
+
+    // Call the function to load Google Maps asynchronously
+    loadGoogleMapsScript();
+</script>

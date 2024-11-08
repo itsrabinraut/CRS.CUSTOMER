@@ -5,10 +5,11 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
     [OverrideActionFilters]
     public class ErrorManagementController : CustomController
     {
-        public ActionResult Index(string Id = "")
+        public ActionResult Index()
         {
-            if (string.IsNullOrEmpty(Id)) return RedirectToAction("LogOff", "Home");
-            ViewBag.ErrorId = Id;
+            var id = Session["ErrorId"].ToString();
+            if (string.IsNullOrEmpty(id)) return RedirectToAction("LogOff", "Home");
+            ViewBag.ErrorId = id;
             return View();
         }
         public ActionResult Error_403()

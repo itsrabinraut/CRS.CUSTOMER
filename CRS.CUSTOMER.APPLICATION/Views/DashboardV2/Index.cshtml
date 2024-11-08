@@ -714,6 +714,7 @@
             script.async = true; // Ensures the script is loaded asynchronously
             script.defer = true; // Defers execution until after the document has been parsed
             document.head.appendChild(script); // Injects the script into the document
+            initMap();
         }
 
         // Call the function to load Google Maps asynchronously

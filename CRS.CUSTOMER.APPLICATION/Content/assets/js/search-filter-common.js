@@ -588,7 +588,7 @@ function LoadGoogleMaps(ClubDetailMapData) {
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
-    //initMap2();
+    initMap2();
 }
 
 function convertToCustomMarkerArray(data) {

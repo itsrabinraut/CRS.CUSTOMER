@@ -40,7 +40,9 @@ namespace CRS.CUSTOMER.APPLICATION
                 //    HttpContext.Current.Response.End();
                 //}
                 //HttpContext.Current.Response.Redirect("/Error/Index?Id=" + id);
-                HttpContext.Current.Response.Redirect("/ErrorManagement/Index?Id=" + id);
+                //HttpContext.Current.Response.Redirect("/ErrorManagement/Index?Id=" + id);
+                Session["ErrorId"] = id;
+                HttpContext.Current.Response.Redirect("/ErrorManagement/Index");
                 HttpContext.Current.Response.End();
             }
         }

@@ -29,18 +29,18 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
             _notificationHelper = notificationHelper;
         }
         #region Landing Page
-        [OutputCacheAttribute(VaryByParam = "*", Duration = 0, NoStore = true)]
-        [HttpGet]
-        public ActionResult HomePage()
-        {
-            var Username = ApplicationUtilities.GetSessionValue("Username").ToString();
-            if (!string.IsNullOrEmpty(Username))
-                return Redirect("/");
-            var culture = Request.Cookies["culture"]?.Value;
-            culture = string.IsNullOrEmpty(culture) ? "ja" : culture;
-            ViewBag.Language = culture;
-            return View();
-        }
+        //[OutputCacheAttribute(VaryByParam = "*", Duration = 0, NoStore = true)]
+        //[HttpGet]
+        //public ActionResult HomePage()
+        //{
+        //    var Username = ApplicationUtilities.GetSessionValue("Username").ToString();
+        //    if (!string.IsNullOrEmpty(Username))
+        //        return Redirect("/");
+        //    var culture = Request.Cookies["culture"]?.Value;
+        //    culture = string.IsNullOrEmpty(culture) ? "ja" : culture;
+        //    ViewBag.Language = culture;
+        //    return View();
+        //}
 
         [HttpPost, ValidateAntiForgeryToken]
         public JsonResult ChangeLanguage(string lang)
@@ -777,10 +777,15 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
 
             return View();
         }
-        public ActionResult GetGoogleMapData(string queryParams)
+        public ActionResult GetGoogleMapData(string libraries, string callback)
         {
             string googleApiKey = ConfigurationManager.AppSettings["GoogleMapKey"];
-            string url = $"https://maps.googleapis.com/maps/api/js?key={googleApiKey}&{queryParams}";
+            string queryParams = $"libraries={libraries}&callback={callback}";
+            string url = "";
+            if (!string.IsNullOrEmpty(libraries) && !string.IsNullOrEmpty(callback))
+                url = $"https://maps.googleapis.com/maps/api/js?key={googleApiKey}&{queryParams}";
+            else
+                url = $"https://maps.googleapis.com/maps/api/js?key={googleApiKey}";
 
             using (var client = new HttpClient())
             {

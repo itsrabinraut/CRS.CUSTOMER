@@ -275,23 +275,8 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
                 dynamic mappedItem = new System.Dynamic.ExpandoObject();
                 if (!string.IsNullOrEmpty(CurrentUrl))
                 {
-                    CurrentUrl = $"/area{item.LocationURL}/hostclub/{item.ClubCode}/";
+                    CurrentUrl = $"/area{item.LocationURL}/hostclub/{item.ClubCode}/host/";
                     mappedItem.URL = CurrentUrl.ToString();
-                    //if (!CurrentUrl.Contains("/LocationManagement/ClubDetail_V2"))
-                    //    CurrentUrl += "/LocationManagement/ClubDetail_V2";
-                    //var parameters = new List<string>();
-                    //if (!string.IsNullOrEmpty(item.LocationId))
-                    //    parameters.Add($"LocationId={item.LocationId.EncryptParameter()}");
-
-                    //if (!string.IsNullOrEmpty(item.ClubId))
-                    //    parameters.Add($"ClubId={item.ClubId.EncryptParameter()}");
-
-                    //string queryString = string.Join("&", parameters);
-
-                    //StringBuilder urlBuilder = new StringBuilder(CurrentUrl);
-                    //urlBuilder.Append(CurrentUrl.Contains("?") ? "&" : "?");
-                    //urlBuilder.Append(queryString);
-
                 }
                 if (float.TryParse(item.Latitude, out float latitude) && float.TryParse(item.Longitude, out float longitude))
                 {
