@@ -193,7 +193,7 @@
         border-radius: 3px;
         background: #d4b78a;
     }
- 
+
     #select2-scheduleDropdown-container {
         line-height: 150% !important;
     }
@@ -217,7 +217,7 @@
 
     </div>
 }
-else if(!string.IsNullOrEmpty(@Model.ClubCoverPhoto))
+else if (!string.IsNullOrEmpty(@Model.ClubCoverPhoto))
 {
     <div class="h-[189px]">
         <img src="@Model.ClubCoverPhoto" alt="banner" class="h-[189px] w-full object-cover"
@@ -672,7 +672,7 @@ else if (Model.ClubCategory.Trim().ToUpper() == "B")
                         }
                     </div>
                 }
-                else if(Model.ClubCategory.Trim().ToUpper() == "B" && Model.HostListModels.Count == 0)
+                else if (Model.ClubCategory.Trim().ToUpper() == "B" && Model.HostListModels.Count == 0)
                 {
                     <div class="flex justify-center items-center flex-col gap-3 py-[100px]">
                         <div class="p-[15.75px] rounded-full border-[2px] border-[#F4F4F4]">
@@ -2058,6 +2058,8 @@ else if (Model.ClubCategory.Trim().ToUpper() == "B")
         document.addEventListener("DOMContentLoaded", function () {
             // The DOM is fully loaded, hide the loader
             document.getElementById("loader-id").style.display = "none";
+            window.addEventListener("scroll", enableShareButton);
+
         });
 
         // If you also want to handle external resources like images, use the load event
@@ -2254,10 +2256,54 @@ else if (Model.ClubCategory.Trim().ToUpper() == "B")
             });
         })();
     </script>
-@*for share button show and hide *@
+    @*for share button show and hide *@
     <script>
+       /* let mybutton = document.getElementById("shareButton");
+        mybutton.style.display = "none";
+        // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function () {
-            debugger
-        }
+       
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }*/
+        $(document).ready(function () {
+            $('#shareButton').fadeOut(); 
+
+            function handleScroll() {
+                var scrollPosition = window.document.body.scrollTop || window.document.documentElement.scrollTop;
+                console.log(scrollPosition)
+
+                if (scrollPosition > 100) {
+                    $('#shareButton').fadeIn(); // Show the button
+                } else {
+                    $('#shareButton').fadeOut(); // Hide the button when scrolling back to the top
+                }
+            }
+
+            $('#innersec').on('wheel', function () {
+                console.log("test")
+
+                handleScroll(); 
+            });
+
+            $('#innersec').on('touchmove', function () {
+                console.log("test1")
+
+                handleScroll(); 
+            });
+
+            $('#innersec').on('touchstart', function () {
+                console.log("test2")
+
+                handleScroll(); 
+            });
+        });
     </script>
 }

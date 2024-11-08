@@ -1018,4 +1018,32 @@
              return false;
          }
     </script>
-}x`
+    <script>
+
+        $(document).ready(function () {
+            $('#shareButton').fadeOut();
+            function handleScroll() {
+                var scrollPosition = window.document.body.scrollTop || window.document.documentElement.scrollTop;
+
+                if (scrollPosition > 100) {
+                    $('#shareButton').fadeIn(); // Show the button
+                } else {
+                    $('#shareButton').fadeOut(); // Hide the button when scrolling back to the top
+                }
+                if (scrollPosition > 100)
+             }
+
+            $('#innersec').on('wheel', function () {
+                handleScroll();
+            });
+
+            $('#innersec').on('touchmove', function () {
+                handleScroll();
+            });
+
+            $('#innersec').on('touchstart', function () {
+                handleScroll();
+            });
+        });
+    </script>
+}
