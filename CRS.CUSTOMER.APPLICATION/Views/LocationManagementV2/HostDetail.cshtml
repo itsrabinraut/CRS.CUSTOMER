@@ -999,13 +999,6 @@
                     items: 1,
                     stagePadding: '25%'
                 }
-                /* responsive: {
-                     400: {
-                         items: 1.75,
-
-                     }
-                 }*/
-
             })
 
             localStorage.clear();
@@ -1024,7 +1017,6 @@
 
             function handleScroll() {
                 var scrollPosition = window.document.body.scrollTop || window.document.documentElement.scrollTop;
-
                 // Show the button if the scroll position is not at the very top (0)
                 if (scrollPosition > 0) {
                     $('#shareButton').fadeIn();
@@ -1032,10 +1024,8 @@
                     $('#shareButton').fadeOut(); // Hide only when at the very top
                 }
             }
-
             // Listen for scroll events on the window
             $(window).on('scroll', handleScroll);
-
             // Optional: Additional touch event handling for smoothness on iOS
             $('#innersec').on('touchmove touchstart', handleScroll);
         });

@@ -2102,6 +2102,7 @@ else if (Model.ClubCategory.Trim().ToUpper() == "B")
                 var modalImg = document.getElementById("img01");
                 var modal = document.getElementById("myModal");
                 modal.style.display = "flex";
+                modal.style.zIndex = 1000;
                 modalImg.src = ImageURL;
             }
         }
@@ -2195,8 +2196,6 @@ else if (Model.ClubCategory.Trim().ToUpper() == "B")
          }
     </script>
 
-
-
     <script>
         function highlightMention() {
             const mentions = document.querySelectorAll('.event-description.mentioned');
@@ -2258,58 +2257,8 @@ else if (Model.ClubCategory.Trim().ToUpper() == "B")
     </script>
     @*for share button show and hide *@
     <script>
-        /* let mybutton = document.getElementById("shareButton");
-         mybutton.style.display = "none";
-         // When the user scrolls down 20px from the top of the document, show the button
-         window.onscroll = function () {
-
-             scrollFunction()
-         };
-
-         function scrollFunction() {
-             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                 mybutton.style.display = "block";
-             } else {
-                 mybutton.style.display = "none";
-             }
-         }*/
-        /* $(document).ready(function () {
-             $('#shareButton').fadeOut();
-
-             function handleScroll() {
-                 var scrollPosition = window.document.body.scrollTop || window.document.documentElement.scrollTop;
-                 console.log(scrollPosition)
-
-                 if (scrollPosition > 100) {
-                     $('#shareButton').fadeIn(); // Show the button
-                 } else {
-                     $('#shareButton').fadeOut(); // Hide the button when scrolling back to the top
-                 }
-             }
-
-             $('#innersec').on('wheel', function () {
-                 console.log("test")
-
-                 handleScroll();
-             });
-
-             $('#innersec').on('touchmove', function () {
-                 console.log("test1")
-
-                 handleScroll();
-             });
-
-             $('#innersec').on('touchstart', function () {
-                 console.log("test2")
-
-                 handleScroll();
-             });
-         });*/
-    </script>
-    <script>
         $(document).ready(function () {
             $('#shareButton').fadeOut();
-
             function handleScroll() {
                 var scrollPosition = window.document.body.scrollTop || window.document.documentElement.scrollTop;
 
@@ -2320,7 +2269,6 @@ else if (Model.ClubCategory.Trim().ToUpper() == "B")
                     $('#shareButton').fadeOut(); // Hide only when at the very top
                 }
             }
-
             // Listen for scroll events on the window
             $(window).on('scroll', handleScroll);
 
