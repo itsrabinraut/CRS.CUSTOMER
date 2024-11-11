@@ -1016,7 +1016,7 @@
             $('#shareButton').fadeOut();
 
             function handleScroll() {
-                var scrollPosition = window.document.body.scrollTop || window.document.documentElement.scrollTop;
+                var scrollPosition = window.document.body.scrollTop || window.document.documentElement.scrollTop || document.getElementById('innersec').scrollTop;
                 // Show the button if the scroll position is not at the very top (0)
                 if (scrollPosition > 0) {
                     $('#shareButton').fadeIn();
