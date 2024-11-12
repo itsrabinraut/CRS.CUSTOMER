@@ -90,7 +90,7 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
                 x.ClubId = x.ClubId.EncryptParameter();
                 x.ClubLogo = ImageHelper.ProcessedImage(x.ClubLogo);
             });
-            var filterDate = DateTime.Today.ToString("yyyy-MM-dd");
+            var filterDate = DateTime.Today.ToString("yyyy/MM/dd");
             if (DateTime.TryParse(Date, out DateTime date))
             {
                 filterDate = Date;

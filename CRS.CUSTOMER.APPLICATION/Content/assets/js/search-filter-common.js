@@ -584,11 +584,10 @@ function LoadGoogleMaps(ClubDetailMapData) {
     customMarkerPosArray = convertToCustomMarkerArray(ClubDetailMapData);
     var script = document.createElement('script');
     //script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCVqzKbK_YObo2ivCYETgRkFCdjCFs2aQA&callback=initMap2";
-    script.src = "/Home/GetGoogleMapData";
+    script.src = "/Home/GetGoogleMapData?libraries=geometry&callback=initMap2";
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
-    initMap2();
 }
 
 function convertToCustomMarkerArray(data) {

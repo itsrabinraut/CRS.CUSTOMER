@@ -9,12 +9,10 @@ using CRS.CUSTOMER.BUSINESS.DashboardV2;
 using CRS.CUSTOMER.BUSINESS.Search;
 using CRS.CUSTOMER.BUSINESS.SearchFilterManagement;
 using CRS.CUSTOMER.SHARED.Search;
-using DocumentFormat.OpenXml.Spreadsheet;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -447,7 +445,7 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
                     x.ClubId = x.ClubId.EncryptParameter();
                     x.ClubLogo = ImageHelper.ProcessedImage(x.ClubLogo);
                 });
-                var filterDate = DateTime.Today.ToString("yyyy-MM-dd");
+                var filterDate = DateTime.Today.ToString("yyyy/MM/dd");
                 if (DateTime.TryParse(ClubDateTimeTabRequest.Date, out DateTime date))
                     filterDate = ClubDateTimeTabRequest.Date;
                 var dbRequest = new ClubDateTimeAndOtherFilterRequest
