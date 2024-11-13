@@ -739,6 +739,7 @@
     <Content Include="App_Data\URLManagementConfigruation.json" />
     <Content Include="App_Data\AmazonConfigruation.json" />
     <Content Include="App_Data\RedirectURLConfiguration.json" />
+    <Content Include="Content\manifest.json" />
     <None Include="packages.config" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
