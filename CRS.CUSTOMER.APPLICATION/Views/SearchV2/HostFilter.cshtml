@@ -284,8 +284,13 @@ else if(Model.FilteredHostModel.Count <= 12 && Model.FilteredHostModel.Count > 0
         let currentPage = Math.floor((@ViewBag.StartIndex) / 12) + 1; // Calculate current page number
         const totalPages = @(ViewBag.TotalRecords != null ? Math.Ceiling(Convert.ToDouble(ViewBag.TotalRecords) / 12) : 0);
         var prefecturesArea = "@ViewBag.PrefecturesArea";
-        var typeValue = "host";
+        var typeValue = "";
         var page_size = 12;
+        if ("@ViewBag.target" == "new") {
+            typeValue = "newhost";
+        } else {
+            typeValue = "host";
+        }
         initializePagination(currentPage, totalPages, prefecturesArea, typeValue, page_size);
         scrollToTop();
         adjustFilterHeight();
