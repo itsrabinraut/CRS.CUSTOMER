@@ -211,11 +211,15 @@
 
 @if (Model.ClubCategory.Trim().ToUpper() == "P")
 {
-    <div class="h-[189px]">
-        <img src="@Model.ClubCoverPhoto" alt="banner" class="h-[189px] w-full object-cover"
-             style="height: 189px;" />
+    if (!string.IsNullOrEmpty(@Model.ClubCoverPhoto))
+    {
+        <div class="h-[189px]">
+            <img src="@Model.ClubCoverPhoto" alt="banner" class="h-[189px] w-full object-cover"
+                 style="height: 189px;" />
 
-    </div>
+        </div>
+    }
+
 }
 else if (!string.IsNullOrEmpty(@Model.ClubCoverPhoto))
 {
@@ -2256,38 +2260,15 @@ else if (Model.ClubCategory.Trim().ToUpper() == "B")
         })();
     </script>
     @*for share button show and hide *@
-      <script>
-          $(document).ready(function () {
-              function isMobileDevice() {
-                  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
-              }
-
-                $('#shareButton').fadeOut();
-                function handleScroll() {
-                    var scrollPosition = window.document.body.scrollTop || window.document.documentElement.scrollTop || document.getElementById('innersec').scrollTop;
-
-                    // Show the button if the scroll position is not at the very top (0)
-                    if (scrollPosition > 0) {
-                        $('#shareButton').fadeIn();
-                    } else {
-                        $('#shareButton').fadeOut(); // Hide only when at the very top
-                    }
-              }
-             
-                // Listen for scroll events on the window
-                $(window).on('scroll', handleScroll);
-
-                // Optional: Additional touch event handling for smoothness on iOS
-                $('#innersec').on('touchmove touchstart wheel scroll', handleScroll);
-            });
-        </script>
-    @*<script>
+    <script>
         $(document).ready(function () {
-            $('#shareButton').fadeOut();
+            function isMobileDevice() {
+                return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+            }
 
+            $('#shareButton').fadeOut();
             function handleScroll() {
-                // Use window.pageYOffset, which works across most devices and browsers
-                var scrollPosition = window.pageYOffset;
+                var scrollPosition = window.document.body.scrollTop || window.document.documentElement.scrollTop || document.getElementById('innersec').scrollTop;
 
                 // Show the button if the scroll position is not at the very top (0)
                 if (scrollPosition > 0) {
@@ -2298,12 +2279,35 @@ else if (Model.ClubCategory.Trim().ToUpper() == "B")
             }
 
             // Listen for scroll events on the window
-            $(window).on('scroll wheel', handleScroll);
+            $(window).on('scroll', handleScroll);
 
             // Optional: Additional touch event handling for smoothness on iOS
-            $('#innersec').on('touchmove touchstart wheel', handleScroll);
+            $('#innersec').on('touchmove touchstart wheel scroll', handleScroll);
         });
-    </script>*@
+    </script>
+    @*<script>
+            $(document).ready(function () {
+                $('#shareButton').fadeOut();
+
+                function handleScroll() {
+                    // Use window.pageYOffset, which works across most devices and browsers
+                    var scrollPosition = window.pageYOffset;
+
+                    // Show the button if the scroll position is not at the very top (0)
+                    if (scrollPosition > 0) {
+                        $('#shareButton').fadeIn();
+                    } else {
+                        $('#shareButton').fadeOut(); // Hide only when at the very top
+                    }
+                }
+
+                // Listen for scroll events on the window
+                $(window).on('scroll wheel', handleScroll);
+
+                // Optional: Additional touch event handling for smoothness on iOS
+                $('#innersec').on('touchmove touchstart wheel', handleScroll);
+            });
+        </script>*@
 
 
 }
