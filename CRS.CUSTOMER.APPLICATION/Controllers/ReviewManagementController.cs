@@ -16,11 +16,9 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
     public class ReviewManagementController : CustomController
     {
         private readonly IReviewManagementBusiness _reviewBuss;
-        private readonly NotificationHelper _notificationHelper;
-        public ReviewManagementController(IReviewManagementBusiness reviewBuss, NotificationHelper notificationHelper)
+        public ReviewManagementController(IReviewManagementBusiness reviewBuss)
         {
             _reviewBuss = reviewBuss;
-            _notificationHelper = notificationHelper;
         }
         #region
         [OutputCacheAttribute(VaryByParam = "*", Duration = 0, NoStore = true)]
@@ -316,11 +314,6 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
                     Title = NotificationMessage.SUCCESS.ToString()
                 });
                 redirectToUrl = "/";
-                await _notificationHelper.SendClubNotificationHelperAsync(new Models.NotificationHelper.NotificationManagementModel
-                {
-                    agentId = clubId,
-                    notificationType = "Ratings Given By Customer"
-                });
                 return Json(new { redirectToUrl });
             }
             else

@@ -5,7 +5,6 @@ using CRS.CUSTOMER.BUSINESS.CommonManagement;
 using CRS.CUSTOMER.BUSINESS.Home;
 using CRS.CUSTOMER.SHARED;
 using CRS.CUSTOMER.SHARED.Home;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Configuration;
 using System.Linq;
@@ -21,12 +20,10 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
     {
         private readonly IHomeBusiness _buss;
         private readonly ICommonManagementBusiness _commonBusiness;
-        private readonly NotificationHelper _notificationHelper;
-        public HomeController(IHomeBusiness buss, ICommonManagementBusiness commonBusiness, NotificationHelper notificationHelper)
+        public HomeController(IHomeBusiness buss, ICommonManagementBusiness commonBusiness)
         {
             _buss = buss;
             _commonBusiness = commonBusiness;
-            _notificationHelper = notificationHelper;
         }
         #region Landing Page
         //[OutputCacheAttribute(VaryByParam = "*", Duration = 0, NoStore = true)]
@@ -185,11 +182,6 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
                         NotificationType = NotificationMessage.SUCCESS,
                         Message = dbResponse.Message ?? "SUCCESS",
                         Title = NotificationMessage.SUCCESS.ToString(),
-                    });
-                    await _notificationHelper.SendCustomerNotificationHelperAsync(new Models.NotificationHelper.NotificationManagementModel
-                    {
-                        agentId = dbResponse.Extra1,
-                        notificationType = "Registration"
                     });
                     return RedirectToAction("SetRegistrationPassword", "Home", new { AgentId = dbResponse.Extra1.DefaultEncryptParameter(), UserId = dbResponse.Extra2.DefaultEncryptParameter(), MobileNumber = Model.MobileNumber, NickName = Model.NickName, ProcessId = Model.ProcessId });
                 }
