@@ -476,96 +476,100 @@
     <div class="overflow-x-auto flex bg-[#EFDDE4] w-full no-scrollbar px-4 gap-[13px] py-4 " id="plan-list">
         @{
             var groupedByPrice = Model.PlanModel.OrderBy(p => p.Price).GroupBy(p => p.Price);
-            var lowestPrice = groupedByPrice.First();
-            foreach (var group in groupedByPrice)
+            if (groupedByPrice != null && Model.PlanModel.Count > 0)
             {
-                string priceKey = group.Key;
-                foreach (var item in group)
+                var lowestPrice = groupedByPrice.First();
+                foreach (var group in groupedByPrice)
                 {
+                    string priceKey = group.Key;
+                    foreach (var item in group)
+                    {
 
-                    <div style="box-shadow: 0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08);border-radius: 4px;
+                        <div style="box-shadow: 0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08);border-radius: 4px;
                border: 1px solid #EAECF0;"
-                         class="bg-white w-[272px] pb-6 pt-4 flex flex-col justify-between ">
-                        <!-- image  -->
-                        <div class="px-4">
-                            <div class='flex'>
-                                <div class="flex flex-col items-center gap-[1px]">
-                                    @if (item.PlanId == lowestPrice.First().PlanId)
-                                    {
-                                        <i class="las la-crown linear-gradient-text text-[23px]"></i>
-                                        <div class="linear-gradient-text table text-[11px] mt-[-5px] font-bold tracking-[0.5px]">@CRS.CUSTOMER.APPLICATION.Resources.Resource.Popularity</div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                        <div class="px-6">
-                            <div class="text-center mb-4">
-                                <div class="font-bold text-[#404040]">@item.PlanName</div>
-                                <div class="text-warmgray-1 text-[11px]">@item.PlanType</div>
-                            </div>
-                            <div class="text-warmgray-1 text-center  text-[10px] pb-[10px]">@item.Remarks</div>
-                            <div>
-                                <div class="flex w-full items-center text-warmgray-1 text-[12px] gap-[6px]">
-                                    <span style="width:25px">料金</span>
-                                    <hr class="w-[191px] bg-[#A09E91]">
-                                </div>
-                                <div class="text-center  ">
-                                    <div class="flex justify-center gap-1">
-                                        @{if (item.IsStrikeOut == "A")
-                                            {
-                                                <del class="text-[36px] text-[#404040]" style="text-decoration: line-through; align-content: end; font-size: 18px; color: #545659; opacity: 0.6; white-space: nowrap">¥  @item.StrikePrice</del>
-                                                <div class="text-[36px] text-[#404040]" style="font-size: 24px; white-space: nowrap; align-content: end; vertical-align: baseline; line-height:100% ">
-                                                    ¥
-                                                    @priceKey
-
-                                                </div>
-
-
-                                                <span style="color: #D17979; font-size: 8px; align-content: end; white-space: nowrap; padding-bottom:">キャンペーン中</span>
-                                            }
-                                            else
-                                            {
-                                                <div class="text-[36px] text-[#404040]" style=" font-size: 26px; color: #545659; ">¥ @priceKey</div>
-                                            }
+                             class="bg-white w-[272px] pb-6 pt-4 flex flex-col justify-between ">
+                            <!-- image  -->
+                            <div class="px-4">
+                                <div class='flex'>
+                                    <div class="flex flex-col items-center gap-[1px]">
+                                        @if (item.PlanId == lowestPrice.First().PlanId)
+                                        {
+                                            <i class="las la-crown linear-gradient-text text-[23px]"></i>
+                                            <div class="linear-gradient-text table text-[11px] mt-[-5px] font-bold tracking-[0.5px]">@CRS.CUSTOMER.APPLICATION.Resources.Resource.Popularity</div>
                                         }
                                     </div>
-                                    <div class="text-[10px] text-warmgray-1">@CRS.CUSTOMER.APPLICATION.Resources.Resource.TaxIncluded</div>
                                 </div>
                             </div>
-                            <div>
-                                <div class="flex w-full items-center text-warmgray-1 text-[12px] gap-[6px] mb-4">
-                                    <span style="width:36px; white-space:nowrap">プラン</span>
-                                    <hr class=" bg-[#A09E91]" style="width:180px">
+                            <div class="px-6">
+                                <div class="text-center mb-4">
+                                    <div class="font-bold text-[#404040]">@item.PlanName</div>
+                                    <div class="text-warmgray-1 text-[11px]">@item.PlanType</div>
                                 </div>
-                                <div class="flex justify-center gap-4 mb-[25px]">
-                                    <div class="grid text-center w-full">
-                                        <i class="las la-clock text-[28px] text-primaryDark"></i>
-                                        <div class="text-[10px] text-[#282828]">
-                                            <span class="text-[15px] font-futura font-bold">@item.PlanTime.Trim()</span>
-                                        </div>
-                                        <div class="text-[10px] text-[#282828]">@CRS.CUSTOMER.APPLICATION.Resources.Resource.HourSystem</div>
+                                <div class="text-warmgray-1 text-center  text-[10px] pb-[10px]">@item.Remarks</div>
+                                <div>
+                                    <div class="flex w-full items-center text-warmgray-1 text-[12px] gap-[6px]">
+                                        <span style="width:25px">料金</span>
+                                        <hr class="w-[191px] bg-[#A09E91]">
                                     </div>
-                                    <div class="grid text-center w-full">
-                                        <i class="las la-glass-cheers text-[28px] text-primaryDark"></i>
-                                        <div class="text-[10px] text-[#282828]">
-                                            <span class="text-[15px] font-futura font-bold">@CRS.CUSTOMER.APPLICATION.Resources.Resource.Drink</span>
-                                        </div>
-                                        <div class="text-[10px] text-[#282828]">@item.Liquor</div>
-                                    </div>
-                                    <div class="grid text-center w-full">
-                                        <i class="las la-user text-[28px] text-primaryDark"></i>
-                                        <div class="text-[10px] text-[#282828]">
-                                            <span class="text-[15px] font-futura font-bold">@item.Nomination</span>@CRS.CUSTOMER.APPLICATION.Resources.Resource.UpToPerson.Trim()
-                                        </div>
-                                        <div class="text-[10px] text-[#282828]">@CRS.CUSTOMER.APPLICATION.Resources.Resource.OnSiteNomination</div>
-                                    </div>
+                                    <div class="text-center  ">
+                                        <div class="flex justify-center gap-1">
+                                            @{if (item.IsStrikeOut == "A")
+                                                {
+                                                    <del class="text-[36px] text-[#404040]" style="text-decoration: line-through; align-content: end; font-size: 18px; color: #545659; opacity: 0.6; white-space: nowrap">¥  @item.StrikePrice</del>
+                                                    <div class="text-[36px] text-[#404040]" style="font-size: 24px; white-space: nowrap; align-content: end; vertical-align: baseline; line-height:100% ">
+                                                        ¥
+                                                        @priceKey
 
+                                                    </div>
+
+
+                                                    <span style="color: #D17979; font-size: 8px; align-content: end; white-space: nowrap; padding-bottom:">キャンペーン中</span>
+                                                }
+                                                else
+                                                {
+                                                    <div class="text-[36px] text-[#404040]" style=" font-size: 26px; color: #545659; ">¥ @priceKey</div>
+                                                }
+                                            }
+                                        </div>
+                                        <div class="text-[10px] text-warmgray-1">@CRS.CUSTOMER.APPLICATION.Resources.Resource.TaxIncluded</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex w-full items-center text-warmgray-1 text-[12px] gap-[6px] mb-4">
+                                        <span style="width:36px; white-space:nowrap">プラン</span>
+                                        <hr class=" bg-[#A09E91]" style="width:180px">
+                                    </div>
+                                    <div class="flex justify-center gap-4 mb-[25px]">
+                                        <div class="grid text-center w-full">
+                                            <i class="las la-clock text-[28px] text-primaryDark"></i>
+                                            <div class="text-[10px] text-[#282828]">
+                                                <span class="text-[15px] font-futura font-bold">@item.PlanTime.Trim()</span>
+                                            </div>
+                                            <div class="text-[10px] text-[#282828]">@CRS.CUSTOMER.APPLICATION.Resources.Resource.HourSystem</div>
+                                        </div>
+                                        <div class="grid text-center w-full">
+                                            <i class="las la-glass-cheers text-[28px] text-primaryDark"></i>
+                                            <div class="text-[10px] text-[#282828]">
+                                                <span class="text-[15px] font-futura font-bold">@CRS.CUSTOMER.APPLICATION.Resources.Resource.Drink</span>
+                                            </div>
+                                            <div class="text-[10px] text-[#282828]">@item.Liquor</div>
+                                        </div>
+                                        <div class="grid text-center w-full">
+                                            <i class="las la-user text-[28px] text-primaryDark"></i>
+                                            <div class="text-[10px] text-[#282828]">
+                                                <span class="text-[15px] font-futura font-bold">@item.Nomination</span>@CRS.CUSTOMER.APPLICATION.Resources.Resource.UpToPerson.Trim()
+                                            </div>
+                                            <div class="text-[10px] text-[#282828]">@CRS.CUSTOMER.APPLICATION.Resources.Resource.OnSiteNomination</div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 }
             }
+
         }
     </div>
 </div>
@@ -1760,4 +1764,3 @@
         })();
     </script>
 }
-
