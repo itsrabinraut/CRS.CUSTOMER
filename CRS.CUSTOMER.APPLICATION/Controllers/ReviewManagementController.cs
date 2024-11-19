@@ -1,9 +1,11 @@
 ﻿using CRS.CUSTOMER.APPLICATION.Helper;
 using CRS.CUSTOMER.APPLICATION.Library;
 using CRS.CUSTOMER.APPLICATION.Models.ReviewManagement;
+using CRS.CUSTOMER.BUSINESS.NotificationManagement;
 using CRS.CUSTOMER.BUSINESS.ReviewManagement;
 using CRS.CUSTOMER.SHARED;
 using CRS.CUSTOMER.SHARED.ReviewManagement;
+using DocumentFormat.OpenXml.Office2010.PowerPoint;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +18,11 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
     public class ReviewManagementController : CustomController
     {
         private readonly IReviewManagementBusiness _reviewBuss;
-        public ReviewManagementController(IReviewManagementBusiness reviewBuss)
+        private readonly INotificationManagementBusiness _NotificationBuss;
+        public ReviewManagementController(IReviewManagementBusiness reviewBuss, INotificationManagementBusiness notificationBuss)
         {
             _reviewBuss = reviewBuss;
+            _NotificationBuss = notificationBuss;
         }
         #region
         [OutputCacheAttribute(VaryByParam = "*", Duration = 0, NoStore = true)]
@@ -57,6 +61,17 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
                     Title = NotificationMessage.INFORMATION.ToString()
                 });
                 return Redirect("/");
+            }
+            var dbRequest1 = new Common()
+            {
+                AgentId = !string.IsNullOrEmpty(ApplicationUtilities.GetSessionValue("AgentId").ToString()) ? ApplicationUtilities.GetSessionValue("AgentId").ToString().DecryptParameter() : null,
+                ActionUser = ApplicationUtilities.GetSessionValue("Username").ToString(),
+                ActionIP = ApplicationUtilities.GetIP()
+            };
+            if (!string.IsNullOrEmpty(Request.NotificationId))
+            {
+                var notificationId = Request.NotificationId.DecryptParameter();
+                var dbResponse1 = _NotificationBuss.ManageSingleNotificationReadStatus(dbRequest1, notificationId);
             }
             var SessionCustomerId = ApplicationUtilities.GetSessionValue("AgentId").ToString()?.DecryptParameter();
             if (string.IsNullOrEmpty(SessionCustomerId) || SessionCustomerId != CustomerId)

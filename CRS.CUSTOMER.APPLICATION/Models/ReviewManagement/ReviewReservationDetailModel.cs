@@ -13,6 +13,7 @@
     {
         public string CustomerId { get; set; }
         public string ReservationId { get; set; }
+        public string NotificationId { get; set; }
     }
     public class ReviewReservationResponseModel
     {
