@@ -302,7 +302,7 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
                             }
                             else
                             {
-                                item.CustomerImage = "";
+                                item.CustomerImage = "https://s3.ap-northeast-1.amazonaws.com/dev-assets.hoslog.jp/ADMIN/no-image.jpeg";
                             }
                         }
                         foreach (var item in responseModel.ClubReviewsModel)

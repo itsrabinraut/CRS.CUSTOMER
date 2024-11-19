@@ -188,39 +188,81 @@
                                                 <img src="@item.NotificationImage"
                                                      class="h-[32px] w-[32px] object-cover rounded-full" />
                                             </div>
-                                            <div class="notification-detail-class read-notification" onclick="Modal('@item.NotificationURL','@item.NotificationImage', '@item.ExtraDetails','')">
-                                                @*<input type="hidden" value="@item.NotificationURL" id="notificationid">*@
-                                                <div class='text-sm font-bold text-charcolBlack notification-title pb-1 '>@item.NotificationSubject</div>
-                                                <div class='text-xs  text-[#667085] pb-1'>@Html.Raw(@item.NotificationBody)</div>
-                                                @if (!string.IsNullOrEmpty(@item.SecondNotificationBody))
-                                                {
-                                                    <br>
-                                                    <div class='text-xs  text-[#667085] pb-1'>@item.SecondNotificationBody</div>
-                                                }
-                                                @if (!string.IsNullOrEmpty(@item.ThirdNotificationBody))
-                                                {
-                                                    <br>
-                                                    <div class='text-xs  text-[#667085] pb-1'>@item.ThirdNotificationBody</div>
-                                                }
-                                                <div class='text-[10px]  text-[#A1A1AA] pb-1'>@item.FormattedDate</div>
+                                            @if (item.NotificationType.Trim().ToUpper() == "RESERVATION NOTIFICATION")
+                                            {
+                                                <div class="notification-detail-class read-notification">
+                                                    <input type="hidden" value="@item.NotificationURL" id="notificationid">
+                                                    <div class='text-sm font-bold text-charcolBlack notification-title pb-1 '>@item.NotificationSubject</div>
+                                                    <div class='text-xs  text-[#667085] pb-1'>@Html.Raw(@item.NotificationBody)</div>
+                                                    @if (!string.IsNullOrEmpty(@item.SecondNotificationBody))
+                                                    {
+                                                        <br>
+                                                        <div class='text-xs  text-[#667085] pb-1'>@item.SecondNotificationBody</div>
+                                                    }
+                                                    @if (!string.IsNullOrEmpty(@item.ThirdNotificationBody))
+                                                    {
+                                                        <br>
+                                                        <div class='text-xs  text-[#667085] pb-1'>@item.ThirdNotificationBody</div>
+                                                    }
+                                                    <div class='text-[10px]  text-[#A1A1AA] pb-1'>@item.FormattedDate</div>
 
-                                                @if (@item.NotificationType.ToLower() == "no visit code" && string.IsNullOrEmpty(@item.IsRemarksDone.ToLower()))
-                                                {
-                                                    @*<input type="hidden" name="NotificationId" value="@item.NotificationId"/>*@
-                                                    <div class="flex items-center  gap-[6px] py-[11px]">
-                                                        <button class="btn-notification btn-primary" onclick="ReservationCancelFunction('@item.NotificationId','Y');">
-                                                            <a class="h-full w-full">
-                                                                Yes
-                                                            </a>
-                                                        </button>
-                                                        <button class="btn-notification" type="button" style="border-radius: 4px;
-                        border: 1px solid #A1A1AA;" onclick="ReservationCancelFunction('@item.NotificationId','N');">
-                                                            No
-                                                        </button>
+                                                    @if (@item.NotificationType.ToLower() == "no visit code" && string.IsNullOrEmpty(@item.IsRemarksDone.ToLower()))
+                                                    {
+                                                        @*<input type="hidden" name="NotificationId" value="@item.NotificationId"/>*@
+                                                        <div class="flex items-center  gap-[6px] py-[11px]">
+                                                            <button class="btn-notification btn-primary" onclick="ReservationCancelFunction('@item.NotificationId','Y');">
+                                                                <a class="h-full w-full">
+                                                                    Yes
+                                                                </a>
+                                                            </button>
+                                                            <button class="btn-notification" type="button" style="border-radius: 4px;
+border: 1px solid #A1A1AA;" onclick="ReservationCancelFunction('@item.NotificationId','N');">
+                                                                No
+                                                            </button>
 
-                                                    </div>
-                                                }
-                                            </div>
+                                                        </div>
+                                                    }
+
+
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="notification-detail-class read-notification" onclick="Modal('@item.NotificationURL','@item.NotificationImage', '@item.ExtraDetails','')">
+                                                    @*<input type="hidden" value="@item.NotificationURL" id="notificationid">*@
+                                                    <div class='text-sm font-bold text-charcolBlack notification-title pb-1 '>@item.NotificationSubject</div>
+                                                    <div class='text-xs  text-[#667085] pb-1'>@Html.Raw(@item.NotificationBody)</div>
+                                                    @if (!string.IsNullOrEmpty(@item.SecondNotificationBody))
+                                                    {
+                                                        <br>
+                                                        <div class='text-xs  text-[#667085] pb-1'>@item.SecondNotificationBody</div>
+                                                    }
+                                                    @if (!string.IsNullOrEmpty(@item.ThirdNotificationBody))
+                                                    {
+                                                        <br>
+                                                        <div class='text-xs  text-[#667085] pb-1'>@item.ThirdNotificationBody</div>
+                                                    }
+                                                    <div class='text-[10px]  text-[#A1A1AA] pb-1'>@item.FormattedDate</div>
+
+                                                    @if (@item.NotificationType.ToLower() == "no visit code" && string.IsNullOrEmpty(@item.IsRemarksDone.ToLower()))
+                                                    {
+                                                        @*<input type="hidden" name="NotificationId" value="@item.NotificationId"/>*@
+                                                        <div class="flex items-center  gap-[6px] py-[11px]">
+                                                            <button class="btn-notification btn-primary" onclick="ReservationCancelFunction('@item.NotificationId','Y');">
+                                                                <a class="h-full w-full">
+                                                                    Yes
+                                                                </a>
+                                                            </button>
+                                                            <button class="btn-notification" type="button" style="border-radius: 4px;
+border: 1px solid #A1A1AA;" onclick="ReservationCancelFunction('@item.NotificationId','N');">
+                                                                No
+                                                            </button>
+
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+
                                         </div>
                                         <div class="circle flex-none">
                                         </div>
@@ -393,7 +435,7 @@
         function Modal(notificationUrl, notificationImage, extraDetails, notificationId) {
             if (notificationId != '') {
                 notificationUrl += `&NotificationId=${notificationId}`;
-            }           
+            }
             $('#notification_modal').val(notificationUrl);
             document.getElementById('image').src = notificationImage;
             const splitData = extraDetails.split(',');
