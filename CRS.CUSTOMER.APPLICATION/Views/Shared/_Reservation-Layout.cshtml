@@ -1,5 +1,25 @@
-<!-- #region Header section -->
 
+@using Newtonsoft.Json
+@functions {
+    public dynamic ReadJson(string fileName)
+    {
+        try
+        {
+            string filePath = HttpContext.Current.Server.MapPath($"~/App_Data/{fileName}");
+            string jsonContent = System.IO.File.ReadAllText(filePath);
+            return JsonConvert.DeserializeObject<dynamic>(jsonContent);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error reading JSON from {fileName}: {ex.Message}");
+        }
+    }
+}
+@{
+    var jsonData = ReadJson("RedirectURLConfiguration.json");
+    //var jsonData2 = ReadJson("Configuration.json");
+}
+<!-- #region Header section -->
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -372,13 +392,13 @@
     <div id="test">
         <div id="leftcontent" style="margin-top: 30%; " class="flex  flex-col items-center ">
             <div id="leftfix" class="fixed">
-                <div class="flex flex-row justify-center">
+                <a href="/" class="flex flex-row justify-center">
                     <img src="~/content/assets/images/bglogo.png" />
-                </div>
+                </a>
                 <div id="siteurl" class="flex flex-row justify-center">
                     <p style="font-size: 25px; font-weight: 600; margin-bottom: 26px" class="text-black">https://hoslog.jp/  </p>
                 </div>
-                <a style="max-width: 300px; height: 57px; background-color: #D75A8B ;border-radius:2px " class="flex flex-row justify-center items-center text-center">
+                <a href="@jsonData.CustomerRegistration.url" style="max-width: 300px; height: 57px; background-color: #D75A8B ;border-radius:2px " class="flex flex-row justify-center items-center text-center">
                     <div>
                         <p id="textContainerone" style="font-size:18px;font-weight:600 ; " class="text-white">
                             <span class="japanese-text">
@@ -392,13 +412,13 @@
                         </p>
                     </div>
                 </a>
-                <a style="max-width: 300px; height: 57px; border-radius: 2px; box-shadow: 0px 0px 12px 0px rgba(30, 34, 75, 0.15); " class="flex flex-row justify-center items-center bg-white mt-3">
+                <a href="@jsonData.ClubRegistration.url" style="max-width: 300px; height: 57px; border-radius: 2px; box-shadow: 0px 0px 12px 0px rgba(30, 34, 75, 0.15); " class="flex flex-row justify-center items-center bg-white mt-3">
                     <div>
 
                         <p style="font-size:18px;font-weight:600" class="text-black">店舗オーナー登録</p>
                     </div>
                 </a>
-                <a style="max-width: 300px; height: 57px; border-radius: 2px; box-shadow: 0px 0px 12px 0px rgba(30, 34, 75, 0.15); " class="flex flex-row justify-center items-center bg-white mt-3">
+                <a href="@jsonData.AffiliateRegistration.url" style="max-width: 300px; height: 57px; border-radius: 2px; box-shadow: 0px 0px 12px 0px rgba(30, 34, 75, 0.15); " class="flex flex-row justify-center items-center bg-white mt-3">
                     <div>
                         <p style="font-size:18px;font-weight:600" class="text-black">アフィリエイター登録</p>
                     </div>
@@ -427,15 +447,15 @@
                 <!-- #region Footer -->
                 <!-- Go up section -->
                 @*<button onclick="topFunction()" id="myBtn">
-                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g id="Frame">
-                            <path id="Vector"
-                                  d="M18 3.375C9.936 3.375 3.375 9.936 3.375 18C3.375 26.064 9.936 32.625 18 32.625C26.064 32.625 32.625 26.064 32.625 18C32.625 9.936 26.064 3.375 18 3.375ZM18 5.625C19.6257 5.62303 21.2357 5.94177 22.738 6.56297C24.2403 7.18417 25.6053 8.09563 26.7548 9.24515C27.9044 10.3947 28.8158 11.7597 29.437 13.262C30.0582 14.7643 30.377 16.3743 30.375 18C30.377 19.6257 30.0582 21.2357 29.437 22.738C28.8158 24.2403 27.9044 25.6053 26.7548 26.7548C25.6053 27.9044 24.2403 28.8158 22.738 29.437C21.2357 30.0582 19.6257 30.377 18 30.375C16.3743 30.377 14.7643 30.0582 13.262 29.437C11.7597 28.8158 10.3947 27.9044 9.24515 26.7548C8.09563 25.6053 7.18417 24.2403 6.56297 22.738C5.94177 21.2357 5.62303 19.6257 5.625 18C5.62303 16.3743 5.94177 14.7643 6.56297 13.262C7.18417 11.7597 8.09563 10.3947 9.24515 9.24515C10.3947 8.09563 11.7597 7.18417 13.262 6.56297C14.7643 5.94177 16.3743 5.62303 18 5.625ZM18 9.984L10.7925 17.1915L12.375 18.8085L16.875 14.3085V25.875H19.125V14.31L23.625 18.81L25.2075 17.19L18 9.984Z"
-                                  fill="#E3AB00" />
-                        </g>
-                    </svg>
+                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g id="Frame">
+                                <path id="Vector"
+                                      d="M18 3.375C9.936 3.375 3.375 9.936 3.375 18C3.375 26.064 9.936 32.625 18 32.625C26.064 32.625 32.625 26.064 32.625 18C32.625 9.936 26.064 3.375 18 3.375ZM18 5.625C19.6257 5.62303 21.2357 5.94177 22.738 6.56297C24.2403 7.18417 25.6053 8.09563 26.7548 9.24515C27.9044 10.3947 28.8158 11.7597 29.437 13.262C30.0582 14.7643 30.377 16.3743 30.375 18C30.377 19.6257 30.0582 21.2357 29.437 22.738C28.8158 24.2403 27.9044 25.6053 26.7548 26.7548C25.6053 27.9044 24.2403 28.8158 22.738 29.437C21.2357 30.0582 19.6257 30.377 18 30.375C16.3743 30.377 14.7643 30.0582 13.262 29.437C11.7597 28.8158 10.3947 27.9044 9.24515 26.7548C8.09563 25.6053 7.18417 24.2403 6.56297 22.738C5.94177 21.2357 5.62303 19.6257 5.625 18C5.62303 16.3743 5.94177 14.7643 6.56297 13.262C7.18417 11.7597 8.09563 10.3947 9.24515 9.24515C10.3947 8.09563 11.7597 7.18417 13.262 6.56297C14.7643 5.94177 16.3743 5.62303 18 5.625ZM18 9.984L10.7925 17.1915L12.375 18.8085L16.875 14.3085V25.875H19.125V14.31L23.625 18.81L25.2075 17.19L18 9.984Z"
+                                      fill="#E3AB00" />
+                            </g>
+                        </svg>
 
-                </button>*@
+                    </button>*@
                 <!-- go up end  -->
             </div>
         </div>
