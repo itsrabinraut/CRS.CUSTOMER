@@ -79,6 +79,7 @@ namespace CRS.CUSTOMER.APPLICATION.Models.LocationManagementV2
         public string HostBloodType { get; set; }
         public string HostConstellationGroup { get; set; }
         public string LiquorStrength { get; set; }
+        public string HostTitle { get; set; }
     }
 
     public class LocationV2ClubWeeklyScheduleModel

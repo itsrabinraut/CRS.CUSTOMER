@@ -334,8 +334,7 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
                     var clubGalleryImageDBResponse = _business.GetClubGalleryImage(responseModel.ClubId.DecryptParameter(), "A");
                     if (clubGalleryImageDBResponse != null && clubGalleryImageDBResponse.Count > 0)
                     {
-                        responseModel.ClubGalleryImageList = clubGalleryImageDBResponse;
-                        responseModel.ClubGalleryImageList.ForEach(x => x = ImageHelper.ProcessedImage(x));
+                        responseModel.ClubGalleryImageList = clubGalleryImageDBResponse.Select(x => ImageHelper.ProcessedImage(x)).ToList();
                     }
                     else responseModel.ClubGalleryImageList = new List<string>();
                     PopulateMetaTagInfo("gallery", ClubName, locationId, PrefecturesArea, responseModel.ClubId.DecryptParameter(), responseModel.ClubDescription);
@@ -411,11 +410,12 @@ namespace CRS.CUSTOMER.APPLICATION.Controllers
                     responseModel.GetPlanDetailList = dbPlanDetailRes.MapObjects<Models.LocationManagementV2.PlanDetailModel>();
                     var groupedResults = responseModel.GetPlanDetailList
                     .GroupBy(planDetail => planDetail.PlanName)
-                    .Select(group => new
-                    {
-                        PlanName = group.Key,
-                        GetPlanGroupDetail = group.ToList()
-                    })
+                    .Where(group => group.Any(detail => detail.Label == "Status")) // Ensure the group contains a "Status" row
+    .Select(group => new
+    {
+        PlanName = group.Key,
+        GetPlanGroupDetail = group.ToList()
+    })
                     .ToList();
                     ViewBag.PlanGroup = groupedResults.MapObjects<Models.LocationManagement.PlanGroup>();
                     ViewBag.PlanGroup1 = groupedResults.MapObjects<Models.LocationManagement.PlanGroup>();

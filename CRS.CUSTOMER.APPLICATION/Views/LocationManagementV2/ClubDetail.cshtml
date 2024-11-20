@@ -594,7 +594,11 @@ else if (Model.ClubCategory.Trim().ToUpper() == "B")
                                                             <img src="~/Content/assets/images/customer/favorite-unfilled.svg" class="h-[30px] w-[30px]" alt="bookmark" />
                                                         </div>
                                                     }
+                                                    @if (!string.IsNullOrEmpty(@item.HostTitle))
+                                                    {
 
+                                                        <div class="text-ellipsis whitespace-nowrap overflow-hidden" style="position: absolute; bottom: 7px; left: 7px; right: 7px; width: 100%; margin: 0 auto; max-width: 115px; height: 23px; padding: 5px 7px 4px 7px; border-radius: 4px; background: rgba(255, 255, 255, 0.90); color: #292F33; font-size:10px; font-weight:700; line-height:140% ">@item.HostTitle</div>
+                                                    }
                                                 </div>
                                                 <div class="pt-[5px]">
                                                     @if (!string.IsNullOrEmpty(item.HostPosition))

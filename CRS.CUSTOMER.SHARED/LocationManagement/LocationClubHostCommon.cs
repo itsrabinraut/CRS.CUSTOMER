@@ -44,6 +44,7 @@ namespace CRS.CUSTOMER.SHARED.LocationManagement
         public string HostCode { get; set; }
         public string ClubCode { get; set; }
         public string LocationURL { get; set; }
+        public string HostTitle { get; set; }
     }
 
     public class ClubWeeklyScheduleCommon
