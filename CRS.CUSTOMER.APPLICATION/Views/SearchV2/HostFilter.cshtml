@@ -296,7 +296,8 @@ else if(Model.FilteredHostModel.Count <= 12 && Model.FilteredHostModel.Count > 0
         adjustFilterHeight();
         function redirectToSearchPage() {
             var prefecturesArea = '@ViewBag.PrefecturesArea';
-            var searchUrl = `/search${prefecturesArea}/?target=club`;
+            var target = '@ViewBag.target';
+            var searchUrl = `/search${prefecturesArea}/?target=${target}`;
             window.location.href = searchUrl;
         }
     </script>
