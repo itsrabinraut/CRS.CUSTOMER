@@ -135,7 +135,9 @@
 
     @section scripts
 {
+        <script src="~/Content/assets/js/main-page-search-filter-common.js"></script>
         <script>
+            LoadSavedData();
         function ClearFunction() {
             window.location.reload();
         }
@@ -166,6 +168,7 @@
             $('#LocationId_1').val(locationId);
             $('#club-search').val($('#main-search-id').val());
                 var form = document.getElementById("club-filter-form-id");
+                ManageMainPageSearchHTMLContent();
                 if (locationId != null) {
                     form.action = "/search" + locationId + "/?target=club";
                 } else {
@@ -177,6 +180,7 @@
 
         function HostFilterSubmitButton() {
             EnableLoaderFunction();
+            
             getSelectedCheckboxValues('choose-your-height', 'host-height-id', 'host-height');// Call the function for the first set of checkboxes
             getSelectedCheckboxValues('select-age', 'host-age-id', 'host-age');// Call the function for the second set of checkboxes
             getSelectedCheckboxValues('choose-blood-type', 'host-bloodtype-id', 'host-blood-type');// Call the function for the second set of checkboxes
@@ -198,6 +202,7 @@
             $('#host-search').val($('#main-search-id').val());
             $('#host-occupation-id').val($('#host-occupation-ddl-id').val());
             var form = document.getElementById("host-filter-form-id");
+            ManageMainPageSearchHTMLContent();
             if (locationId.trim() == '') {
                 form.action = "/search" + "@ViewBag.PrefecturesArea" + "/?target=host";
             } else {
@@ -250,7 +255,8 @@
              window.location.href = searchUrl;
          }
 
-        function TabRedirectionFunction(tab) {
+            function TabRedirectionFunction(tab) {
+                localStorage.removeItem('ClubFilterHTMLContent')
             var prefecturesArea = '@ViewBag.PrefecturesArea';
             var searchUrl = `/search${prefecturesArea}/?target=${tab}`;
             window.location.href = searchUrl;

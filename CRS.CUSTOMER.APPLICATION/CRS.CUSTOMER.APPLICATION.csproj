@@ -630,6 +630,7 @@
     <Content Include="Content\assets\js\jquery.min.js" />
     <Content Include="Content\assets\js\jquery.steps.min.js" />
     <Content Include="Content\assets\js\jquery.validate.min.js" />
+    <Content Include="Content\assets\js\main-page-search-filter-common.js" />
     <Content Include="Content\assets\js\main.js" />
     <Content Include="Content\assets\js\ManageRedirectURL.js" />
     <Content Include="Content\assets\js\modal.js" />
