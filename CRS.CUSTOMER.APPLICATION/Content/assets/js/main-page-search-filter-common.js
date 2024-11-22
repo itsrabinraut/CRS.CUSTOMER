@@ -3,7 +3,6 @@
     document.body.classList.add('body-no-scroll');
     var CustomerCurrentLocationId = $('#current-location-id').val();
     var preferencefilterpopupContent = $('#tab1').html();
-    debugger
     if (preferencefilterpopupContent.trim() !== '') {
         var element = document.getElementById('drawer-filter-location');
         if (element) {
@@ -50,8 +49,7 @@
         if (ClubDetailMapData) {
             ClubDetailMapData = JSON.parse(ClubDetailMapData);
             LoadGoogleMaps(ClubDetailMapData);
-        }
-        $('#drawer-filter-location').css('display', 'none');
+        }      
         DisableLoaderFunction1();
         return false;
     }
@@ -80,7 +78,6 @@ function ManageMainPageSearchHTMLContent() {
         checkboxStates: checkboxStates,
         dropdownValues: dropdownValues
     };
-    //localStorage.setItem('PreferenceFilterHTMLContent', content);
     localStorage.setItem('ClubFilterHTMLContent', JSON.stringify(savedData)); // Store the data
 }
 function getSelectedCheckboxValues(checkboxName, targetElementId, checkboxClass) {
